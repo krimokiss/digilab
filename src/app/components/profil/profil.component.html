@@ -1,0 +1,52 @@
+<section class="container-fluid">
+    <mat-tab-group mat-align-tabs="center" class="groupe" dynamicHeight>
+        <mat-tab label="Informations">
+            <div class="example-small-box mat-elevation-z4 first">
+
+                <div class="col">
+                    <div class="ligne">
+                        <mat-icon>account_circle</mat-icon>
+                        <div><strong>{{profile.firstName}} {{profile.lastName}}</strong></div>
+                    </div>
+                    <div class="ligne">
+                        <mat-icon>face</mat-icon>
+                        <div>Pseudo : {{profile.username}}</div>
+                    </div>
+                    <div class="ligne">
+                        <mat-icon>phone</mat-icon>
+                        <div> {{profile.phoneNumber}}</div>
+                    </div>
+                    <div class="ligne">
+                        <mat-icon>email</mat-icon>
+                        <div> {{profile.email}}</div>
+                    </div>
+                </div>
+
+            </div>
+        </mat-tab>
+        <mat-tab label="Adresse">
+            <div class="example-small-box mat-elevation-z4">
+                <div class="col">
+                    <div class="ligne">
+                        <mat-icon>home</mat-icon><div>Adresse : {{profile.street}}</div>
+                    </div>
+                   <div class="ligne">
+                    <mat-icon>person_pin_circle</mat-icon><div>Code postale : {{profile.zipCode}}</div>
+                   </div>
+                   <div class="ligne">
+                    <mat-icon>location_city</mat-icon><div>Ville : {{profile.city}}</div>
+                   </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Photo">
+            <div class="example-large-box mat-elevation-z4">
+                <img [src]="profile.avatar" alt="">
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+
+    <!-- <mat-card-title>{{profile.firstName}} </mat-card-title>
+    <mat-card-title>{{profile.lastName}}</mat-card-title> -->
+</section>

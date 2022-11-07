@@ -1,0 +1,32 @@
+<div class="accueil">
+    <h1>Bienvenue dans l'application</h1> <br>
+    <p class="connect">Connectez-vous :</p> <br>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Utilisateur</mat-label>
+              <input formControlName="email" matInput placeholder="E-mail">
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Mot de passe</mat-label>
+              <input formControlName="password" matInput placeholder="8 caractères min" type="password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-hint>1MAJ,1min,1chiffre et 1 symbol min</mat-hint>
+            </mat-form-field>
+          </p> <br>
+          <button mat-raised-button type="submit" [disabled]="!loginForm.valid">Envoyer</button> <br>
+         <div class="notSubscribe">
+          <span>Vous n'avez pas encore de compte</span> <br>
+         <span>Cliquez <a routerLink="/register">ici</a> pour vous inscrire.</span>
+         </div>
+      
+      </form>
+ 
+
+    
+</div>

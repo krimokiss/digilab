@@ -1,0 +1,75 @@
+<section class="contenu">
+   
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Rechercher</mat-label>
+            <input matInput [formControl]="searchBar" maxlength="10" placeholder="Nom, prénom ou ville">
+        </mat-form-field>
+    </form>
+    <!-- <div class="profile" *ngIf="Profile">
+        <mat-drawer-container class="example-container" >
+            <mat-drawer #drawer class="example-sidenav" mode="side">
+              <p><img [src]="Profile.avatar" alt=""></p>
+              <p> {{Profile.firstName}}</p>
+              <p> {{Profile.lastName}}</p>
+            </mat-drawer>
+          
+            <div class="example-sidenav-content">
+                <mat-icon (click)="drawer.toggle()" >arrow_back_ios</mat-icon>              
+            </div>
+          
+          </mat-drawer-container>
+    </div> -->
+    
+    <div class="reponse perso">
+
+        <div class="cards">
+            <div>
+                <p>Moi</p>
+                <div class="name"><strong>{{Profile.firstName + ' ' +Profile.lastName}}</strong></div>
+                
+            </div>
+            <div *ngIf="Profile.avatar">
+                <img mat-card-avatar [src]="Profile.avatar" alt="">
+
+            </div>
+        </div>
+    </div>
+    <div class="togle"><mat-slide-toggle color="primary" [(ngModel)]="isChecked">{{isChecked ? 'Tout le monde' : 'Mes amis'}}</mat-slide-toggle></div>
+   <div *ngIf="isChecked" class="allUsers">
+    <div  class="reponse" *ngFor="let user of NewArray">
+
+        <div class="cards" *ngIf="Users && Users.length > 0" >
+            <div>
+                <div class="name"><strong>{{user.firstName + ' ' +user.lastName}}</strong></div>
+                <div >
+                    <mat-icon (click)="ajouterAmi(user)" >person_add</mat-icon>
+                    {{user.username}}
+                    <mat-icon classs="iconMessage" (click)="openDialog(user)">forum</mat-icon>
+                </div>
+            </div>
+            <div *ngIf="user.avatar">
+                <img mat-card-avatar [src]="user.avatar" alt="" >
+
+            </div>
+        </div>
+    </div>
+   </div>
+   <div *ngIf="!isChecked" class="allUsers friends">
+    <div style="background-color:rgb(41, 100, 209); color: white;" class="reponse" *ngFor="let user of Amis">
+
+        <div style="color:white" class="cards" *ngIf="Amis && Amis.length > 0" matBadge="8" matBadgePosition="after" matBadgeColor="accent">
+            <div>
+                <div class="name"><strong>{{user.firstName + ' ' +user.lastName}}</strong></div>
+                <div>
+                    <mat-icon (click)="supprimerAmi(user)" >person_remove</mat-icon>{{user.username}}<mat-icon classs="iconMessage" (click)="openDialog(user)">forum</mat-icon>
+                </div>
+            </div>
+            <div *ngIf="user.avatar">
+                <img mat-card-avatar [src]="user.avatar" alt="" >
+
+            </div>
+        </div>
+    </div>
+   </div>
+</section>

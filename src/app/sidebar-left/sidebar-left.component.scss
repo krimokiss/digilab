@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(235, 232, 228);
+
+    img {
+        width: 120px;
+        height: 100px;
+        align-self: center;
+    }
+
+    .boutons {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-evenly;
+
+        a {
+            // margin-bottom: 30px;
+            width: 100%;
+
+            &:hover {
+                background-color: rgb(75, 134, 243);
+                color: white;
+            }
+        }
+
+        mat-icon {
+            margin-top: 5px;
+            float: right;
+        }
+    }
+
+
+}
+@media only screen and (min-width: 1600px){
+  .container{
+    .boutons a{
+        padding: 15px;
+        font-size: larger;
+       }
+  }
+}

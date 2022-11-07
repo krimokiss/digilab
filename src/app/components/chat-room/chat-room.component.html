@@ -1,0 +1,45 @@
+<div class="contenue" *ngIf="utilisateur">
+    <app-chat-top-bar [donnees]="utilisateur"></app-chat-top-bar>
+
+    <div class="parent "#scrollMe>
+        <div  *ngFor="let msg of dateFiltered">
+            <div  *ngIf="msg.userID.username== utilisateur.username || msg.friendID.username == utilisateur.username " >
+                <mat-chip-list aria-label="Fish selection"> </mat-chip-list>
+                    <div class="line" [ngClass]="msg.userID.username== utilisateur.username? 'left' : 'right'">
+                        <mat-hint>{{ msg.date | date :'dd-MMM HH.mm'}}</mat-hint> 
+                        <mat-chip selected>{{msg.content}}</mat-chip>
+                    </div>
+               
+            </div>
+        </div>
+        <!-- <div *ngFor="let blague of mergeArray">
+            <div *ngIf="blague.friendID.username == utilisateur.username" class="right">
+                
+                    {{ blague.date | date :'shortTime'}} <mat-chip color="primary" selected>{{blague.content}}</mat-chip>
+               
+            </div>
+        </div> -->
+        
+    </div>
+
+    
+
+</div>
+
+
+<div class="bouton">
+    <input *ngIf="utilisateur" 
+    [formControl]="newBlagues" 
+    (keypress)="Send($event)"
+    [(ngModel)]="message"
+    placeholder="Tapez votre message, appuyez sur Entrer pour envoyer" 
+    type="text" 
+    (focus)="onFocus()"
+    name="message" 
+    >
+    <mat-icon *ngIf="utilisateur" (click)="onSend()">send</mat-icon>
+    <button *ngIf="utilisateur" (click)="toggleEmojiPicker()"> 😀</button><br>
+    <emoji-mart class="emoji-mart" set="twitter" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)"></emoji-mart>
+
+</div>
+

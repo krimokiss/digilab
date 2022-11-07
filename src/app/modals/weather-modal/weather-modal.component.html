@@ -1,0 +1,27 @@
+<section>
+    <form [formGroup]="weatherForm" (ngSubmit)="onSubmit()">
+
+        <!-- Input name -->
+        <mat-form-field appearance="fill">
+          <mat-label>Rue</mat-label>
+          <input matInput formControlName="rue" type="text">
+        </mat-form-field>
+      
+        <!-- Input path -->
+        <mat-form-field appearance="fill">
+          <mat-label>Code Postal</mat-label>
+          <input matInput formControlName="codePostal" type="text">
+        </mat-form-field>
+      
+        <!-- Input description -->
+        <mat-form-field appearance="fill">
+          <mat-label>Ville</mat-label>
+          <input matInput formControlName="ville" type="text">
+        </mat-form-field>
+      
+        <button mat-raised-button type="submit" (click)="onSubmit()">
+          Valider
+        </button>
+      
+      </form>
+</section>

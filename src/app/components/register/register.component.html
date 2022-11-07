@@ -1,0 +1,101 @@
+<div class="accueil">
+    <!-- <p>Bienvenue dans l'application</p> <br> -->
+    <p>Inscrivez-vous :</p> <br>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+
+
+        <p >
+            <mat-form-field appearance="fill">
+              <mat-label>Nom</mat-label>
+              <input formControlName="lastName" matInput placeholder="Nom" type="text">
+              <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Prénom</mat-label>
+              <input formControlName="firstName" matInput placeholder="Prénom">
+              <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Pseudonyme</mat-label>
+              <input formControlName="username" matInput placeholder="Pseudonyme">
+              <mat-icon matSuffix>face</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Téléphone</mat-label>
+              <input formControlName="phoneNumber" matInput placeholder="Numero de téléphone">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Date de naissance</mat-label>
+              <input formControlName="date" matInput placeholder="JJ/MM/AAAA" type="date">
+              <mat-icon matSuffix>calendar_today</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput placeholder="Email">
+              <mat-icon matSuffix>alternate_email</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Adresse</mat-label>
+              <input formControlName="street" matInput placeholder="Numéro/ Rue">
+              <mat-icon matSuffix>home</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Code postale</mat-label>
+              <input formControlName="zipCode" matInput placeholder="74300">
+              <mat-icon matSuffix>home</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Ville</mat-label>
+              <input formControlName="city" matInput placeholder="Paris" type="text">
+              <mat-icon matSuffix>home</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Pays</mat-label>
+              <input formControlName="country" matInput placeholder="France" type="text">
+              <mat-icon matSuffix>home</mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Mot de passe</mat-label>
+              <input formControlName="password" matInput placeholder="8 caractères min" type="text">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-hint>Doit contenir au moins 8 caractères avec une MAJUSCULE, une minuscule, un chiffre et un caractère spécial (!@#$%^&*)</mat-hint>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Confirmez mot de passe</mat-label>
+              <input formControlName="ConfirmPassword" matInput placeholder="8 caractères min" type="text">
+              <mat-icon matSuffix>check_circle</mat-icon>
+              <mat-hint>Votre mot de passe doit être strictement identique au premier.</mat-hint>
+            </mat-form-field>
+          </p>
+          <button mat-raised-button type="submit" [disabled]="!profileForm.valid">Envoyer</button>
+         
+      
+      </form>
+ 
+
+    
+</div>

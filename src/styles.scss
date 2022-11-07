@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '@ctrl/ngx-emoji-mart/picker';
+.snack-bar-color{
+    background-color:rgb(97, 132, 247);
+    color: #fff;
+    border: solid 2px white;
+}

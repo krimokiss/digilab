@@ -1,0 +1,18 @@
+// .container-fluid{
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+// }
+.reponse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 300px;
+    margin: 20px;
+}
+button{
+    margin-top: 20px;
+}

@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // justify-content: space-around;
+    // padding-top: 10px;
+    background-color: rgb(235, 232, 228);
+    height: 100%;
+    width: auto;
+    gap: 30px;
+    display: grid;
+    .example-card{
+        // background-image: url(http://www.asud.org/wp-content/uploads/2014/01/Breaking-bad.jpg);
+        // background-size: cover;
+        // color: white;
+        border-radius: 10px;
+        max-width: 250px;
+        align-self: center;
+        z-index: 2;
+        gap: 5px;
+        transform: translateY(-10px);
+       
+        mat-card-title{
+            color:#3F51B5;
+        }
+        mat-card-title, mat-card-subtitle{
+            text-align: center;
+        }
+        mat-card-content{
+            text-align: center;
+        }
+    }
+    mat-card-actions{
+        display: flex;
+        justify-content: space-around;
+        button{
+            padding: 10px;
+        }
+       
+    }
+    .meteo{
+        transform: translateY(-60%);
+    }
+}

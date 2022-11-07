@@ -1,0 +1,14 @@
+
+<div class="reponse">
+    <h2>Discuter avec:</h2>   
+    <span><strong>Nom : {{dataUser.lastName}}</strong></span> <br>
+    <span><strong>Prenom : {{dataUser.firstName}}</strong></span> <br>
+    <span>Pseudo : {{dataUser.username}}</span> <br>
+    <img mat-card-avatar [src]="dataUser.avatar" alt="">
+
+
+</div>
+<div class="d-flex">
+    <div><button mat-raised-button color='primary' (click)="onClick()">Accepter</button></div>
+    <div><button mat-raised-button color='secondary' (click)="onClickoff()">Retour</button></div>
+</div>

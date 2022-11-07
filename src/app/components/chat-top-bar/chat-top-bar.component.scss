@@ -1,0 +1,21 @@
+.container{
+    height: 60px;
+    margin-top: 5px;
+    text-align: center;
+    width: 95%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    background-color: rgb(235, 232, 228);
+    .titre{
+       padding-top: 10px;
+    }
+
+    img {
+        border-radius: 50%;
+        border: solid 2px;
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+    }
+  
+}

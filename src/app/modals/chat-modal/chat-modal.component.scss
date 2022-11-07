@@ -1,0 +1,27 @@
+
+.reponse{
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    img{
+        border-radius: 50%;
+        border: solid 2px;
+        margin: 10%;
+        transition: all .3s ease-in-out;
+        width: 170px;
+        height: 200px;
+    }
+    img:hover{
+        scale: 1.15;
+    }
+    span{
+        font-size: larger;
+       line-height: 30px;
+    }
+    h2{
+        text-align: center;
+    }
+}
+.d-flex{
+    justify-content: space-evenly;
+}

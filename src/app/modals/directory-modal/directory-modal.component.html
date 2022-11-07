@@ -1,0 +1,21 @@
+<h4>Add Directory</h4>
+<form class="reponse" [formGroup]="directoryForm" (ngSubmit)="onSubmit()">
+    
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nom</mat-label>
+            <input formControlName="nom" matInput placeholder="Nom">
+            <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Chemin</mat-label>
+            <input formControlName="chemin" matInput placeholder="Chemin">
+            <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput placeholder="Description"></textarea>
+        </mat-form-field>
+        <button type="submit" [disabled]="directoryForm.invalid">Créer</button>
+   
+</form>

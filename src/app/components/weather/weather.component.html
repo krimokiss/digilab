@@ -1,0 +1,13 @@
+<section class="container-fluid">
+
+    <h2>Prévisions <mat-icon matSuffix color="primary">wb_sunny</mat-icon> Météorologique</h2>
+    <mat-dialog-content><strong>Rue :</strong> {{meteo.rue}}</mat-dialog-content>
+    <mat-dialog-content><strong>Code Postal :</strong> {{meteo.codePostal}}</mat-dialog-content>
+    <mat-dialog-content><strong>Ville :</strong> {{meteo.ville}}</mat-dialog-content>
+    <mat-dialog-content><strong>Température :</strong> {{meteo.temperature}} °C</mat-dialog-content>
+  
+
+    <button mat-raised-button type="submit" color="primary" (click)="newAdress()">Changer le lieu</button>
+    <button mat-raised-button type="submit"  (click)="getUserLocation()" ><mat-icon> location_on</mat-icon>Géolocaliser</button>
+    
+</section>

@@ -1,0 +1,43 @@
+<section class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-md-2 col-0">
+      <app-sidebar-left></app-sidebar-left>
+    </div>
+
+    <div class="main col-md-8 col-12">
+
+      <nav class="navbar-expand">
+        <div></div>
+        <mat-icon class="menu">menu</mat-icon>
+        <h1>My Chat APP</h1>
+        <div class="icons">
+          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" (click)="onClick()"
+            aria-label="Example icon-button with logout icon">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </div>
+      </nav>
+
+      <section>
+        <router-outlet></router-outlet>
+        <div style="background-image: url('assets/overview.png') ; background-size:'contain'" class="Bground">
+        </div>
+      </section>
+
+    </div>
+
+    <div class="col-md-2 col-0">
+      <app-sidebar-right></app-sidebar-right>
+    </div>
+
+  </div>
+
+</section>

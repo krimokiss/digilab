@@ -1,0 +1,19 @@
+.accueil {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p{
+        font-size: larger;
+        font-weight: 600;
+    }
+    button{
+        margin: 20px 0px 100px;
+        float: right;
+    }
+    .mat-form-field{
+        width: 400px;
+    }
+    
+}

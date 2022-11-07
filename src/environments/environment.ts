@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // API_URL :'https://plenty-yaks-add-88-166-5-79.loca.lt/',
+  // API_URL :'http://localhost:3000/',
+  API_URL :'https://digifab-chat.herokuapp.com/',
 };
 
 /*

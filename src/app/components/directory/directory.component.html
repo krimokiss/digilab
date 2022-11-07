@@ -1,0 +1,14 @@
+
+<section class="container-fluid">
+        <div><button mat-raised-button color='secondary' (click)="addNewDir()">Ajouter un répertoire</button></div>
+        <div class="reponse" *ngFor="let dir of directories">
+           
+                <span>Nom : {{dir.data.nom}}</span> <br>
+                <span>Chemin d'accès : {{dir.data.chemin}}</span> <br>
+                <span>Description : {{dir.data.description}}</span>
+                <!-- <span>Id : {{dir.id}}</span> -->
+            
+        </div>
+</section>
+ 
+
