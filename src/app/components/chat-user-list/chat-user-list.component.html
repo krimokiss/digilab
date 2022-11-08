@@ -1,11 +1,7 @@
 <section class="contenu">
    
-    <form class="example-form">
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Rechercher</mat-label>
-            <input matInput [formControl]="searchBar" maxlength="10" placeholder="Nom, prénom ou ville">
-        </mat-form-field>
-    </form>
+    
+   
     <!-- <div class="profile" *ngIf="Profile">
         <mat-drawer-container class="example-container" >
             <mat-drawer #drawer class="example-sidenav" mode="side">
@@ -35,13 +31,25 @@
             </div>
         </div>
     </div>
-    <div class="togle"><mat-slide-toggle color="primary" [(ngModel)]="isChecked">{{isChecked ? 'Tout le monde' : 'Mes amis'}}</mat-slide-toggle></div>
-   <div *ngIf="isChecked" class="allUsers">
-    <div  class="reponse" *ngFor="let user of NewArray">
 
-        <div class="cards" *ngIf="Users && Users.length > 0" >
+    <div class="togle">
+        <mat-slide-toggle color="primary" [(ngModel)]="isChecked">{{isChecked ? 'Tout le monde' : 'Mes amis'}}</mat-slide-toggle>
+    </div>
+
+   <div *ngIf="isChecked" class="allUsers">
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Rechercher</mat-label>
+            <input matInput [formControl]="searchBar" maxlength="10" placeholder="Nom ou prénom">
+        </mat-form-field>
+    </form>
+    <div  class="reponse" *ngFor="let user of NewArray">
+        <div class="cards" *ngIf="Users && Users.length > 0" [matBadge]="user.nbMsg" matBadgePosition="after" matBadgeColor="accent">
             <div>
-                <div class="name"><strong>{{user.firstName + ' ' +user.lastName}}</strong></div>
+                <div class="test">
+                    <mat-icon [ngClass]="user.online? 'online': 'offline'">radio_button_checked</mat-icon>
+                    <strong>{{user.firstName + ' ' +user.lastName}}</strong>
+                </div>
                 <div >
                     <mat-icon (click)="ajouterAmi(user)" >person_add</mat-icon>
                     {{user.username}}
@@ -49,25 +57,34 @@
                 </div>
             </div>
             <div *ngIf="user.avatar">
-                <img mat-card-avatar [src]="user.avatar" alt="" >
-
+                <img  mat-card-avatar [src]="user.avatar" alt="" >
             </div>
         </div>
     </div>
    </div>
+
    <div *ngIf="!isChecked" class="allUsers friends">
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Rechercher dans mes amis</mat-label>
+            <input matInput [formControl]="searchAmi" maxlength="10" placeholder="Nom ou prénom">
+        </mat-form-field>
+    </form>
     <div style="background-color:rgb(41, 100, 209); color: white;" class="reponse" *ngFor="let user of Amis">
 
-        <div style="color:white" class="cards" *ngIf="Amis && Amis.length > 0" matBadge="8" matBadgePosition="after" matBadgeColor="accent">
+        <div  class="cards" *ngIf="Amis && Amis.length > 0"  [matBadge]="user.nbMsg" matBadgePosition="after" matBadgeColor="accent">
             <div>
-                <div class="name"><strong>{{user.firstName + ' ' +user.lastName}}</strong></div>
                 <div>
-                    <mat-icon (click)="supprimerAmi(user)" >person_remove</mat-icon>{{user.username}}<mat-icon classs="iconMessage" (click)="openDialog(user)">forum</mat-icon>
+                    <mat-icon [ngClass]="user.online? 'online': 'offline'">radio_button_checked</mat-icon>
+                    <strong>{{user.firstName + ' ' +user.lastName}}</strong>
+                </div>
+                <div>
+                    <mat-icon (click)="supprimerAmi(user)" >person_remove</mat-icon>{{user.username}}
+                    <mat-icon  (click)="openDialog(user)" >forum</mat-icon>
                 </div>
             </div>
             <div *ngIf="user.avatar">
                 <img mat-card-avatar [src]="user.avatar" alt="" >
-
             </div>
         </div>
     </div>

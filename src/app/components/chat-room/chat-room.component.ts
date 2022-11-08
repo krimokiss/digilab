@@ -80,43 +80,16 @@ export class ChatRoomComponent implements OnInit {
       console.warn(valueA);
       this.utilisateur = valueA
 
-      // this.dataService.joke().subscribe((jokes: any) => {
-      //   this.blagues = jokes
-      // })
-
-      // this.socketService.getFriendMessage().subscribe((value: any) => {
-      //   this.blagues = value.sent
-      //   this.msgReceived = value.received
-      //   console.log(value);
-      //   // console.log(this.blagues);
-      //   // console.log(this.msgReceived.date);
-
-
-      //   this.mergeArray = this.blagues.concat(this.msgReceived)
-      //   // console.log(this.mergeArray);
-      //   // console.log(this.mergeArray);
-      //   for (const iterator of this.mergeArray) {
-      //     this.dateMessage = iterator.date
-      //     // console.log(this.dateMessage);
-
-      //   }
-      //   const arraySorted = this.mergeArray.map((value: any) => {
-      //     return { ...value, date: new Date(value.date) };
-      //   })
-      //   const sortAsc = arraySorted.sort((objA: any, objB: any) => objA.date.getTime() - objB.date.getTime(),
-      //   );
-      //   // console.log(sortAsc);
-      //   this.dateFiltered = sortAsc
-      // })
       this.socketService.getNewRouteMessage(this.utilisateur.username).subscribe((value: any) => {
 
         this.dateFiltered = value
-        console.log(this.dateFiltered);
+        // console.log(this.dateFiltered);
 
       })
     })
 
     this.socketService.initConversation()
+  
 
     this.socketService.getMsgSubject().subscribe((message: any) => {
       console.log(message);
@@ -130,16 +103,20 @@ export class ChatRoomComponent implements OnInit {
     this.socketService.getMsgOnlineSubject().subscribe((message: any) => {
 
       this.dateFiltered.push(message)
-      console.log(message);
+      // console.log(message);
 
       if (this.utilisateur.username !== message.userID.username) {
         this.snackBar.open('Message de : ' + message.userID.username + ' .' + ' .'+ ' .'+ ' Contenu : ' +' '+ message.content, 'ok',
         { duration : 6000, verticalPosition: 'top', panelClass: ['snack-bar-color'] })
         this.playAudio()
+        console.log(this.utilisateur);
+        console.log(message);
+        
+        
       }
     
-      console.log(message);
-      console.log(this.utilisateur);
+      // console.log(message);
+      // console.log(this.utilisateur);
 
     })
     this.socketService.getMessages()

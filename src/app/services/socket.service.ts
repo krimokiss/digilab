@@ -21,6 +21,8 @@ export class SocketService {
   getMessageSubject = new Subject()
   sendMessagesSubject = new Subject()
   getMessageOnlineSubject = new Subject()
+  logUsersSubject = new Subject()
+  usersConnecet !: any
 
   getFriendMessage(): Observable<any> {
     return this.http.get(this.urlAllMessages)
@@ -28,6 +30,18 @@ export class SocketService {
 
   initConversation() {
     this.socket.emit('login', { token: UserService.getToken() })
+  }
+  logUsers(): void {
+    this.socket.on('users list', (usersOnline: any) => {
+      // console.log(usersOnline);
+      this.logUsersSubject.next(usersOnline)
+      this.usersConnecet = usersOnline
+      // console.log(this.usersConnecet);
+      
+    })
+  }
+  getOnlineUsers(){
+    return this.logUsersSubject.asObservable()
   }
   addFriend(friend: any) {
     return this.http.post(`${environment.API_URL}api/users/addfriend`, { "friendName": friend.username })
@@ -68,7 +82,7 @@ export class SocketService {
     return this.getMessageOnlineSubject.asObservable()
   }
 
-  getNewRouteMessage(friendName: string){
+  getNewRouteMessage(friendName: string) {
     return this.http.get(`${environment.API_URL}api/messages/friendmessages/${friendName}`)
   }
 
