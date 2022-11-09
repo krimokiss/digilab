@@ -7,7 +7,6 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { DirectoryComponent } from './components/directory/directory.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './modules/login/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

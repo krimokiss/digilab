@@ -1,3 +1,4 @@
+import { SharedModule } from './modules/shared/shared.module';
 import { MatBadgeModule } from '@angular/material/badge';
 import { environment } from 'src/environments/environment';
 import { TokenInterceptorPovider } from './helpers/token.interceptor';
@@ -8,7 +9,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule} from '@angular/material/input';
 import { MatListModule} from '@angular/material/list';
 import { MatAutocompleteModule} from '@angular/material/autocomplete';
-import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
 import { SocketIoConfig, SocketIoModule} from'ngx-socket-io';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -16,7 +16,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './modules/login/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ChatComponent } from './components/chat/chat.component';
@@ -49,7 +48,6 @@ const config: SocketIoConfig = {url:`${environment.API_URL}`, options:{}};
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     RegisterComponent,
     OverviewComponent,
     ChatComponent,
@@ -76,8 +74,8 @@ const config: SocketIoConfig = {url:`${environment.API_URL}`, options:{}};
     MatAutocompleteModule,
     MatInputModule,
     MatListModule,
-    MatIconModule,
-    ReactiveFormsModule,
+    // MatIconModule,
+    // ReactiveFormsModule,
     MatButtonModule,
     HttpClientModule,
     FormsModule,
@@ -92,8 +90,12 @@ const config: SocketIoConfig = {url:`${environment.API_URL}`, options:{}};
     SocketIoModule,
     SocketIoModule.forRoot(config),
     MatSlideToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    SharedModule
     
+  ],
+  exports : [
+    SharedModule
   ],
   providers: [TokenInterceptorPovider],
   bootstrap: [AppComponent]
