@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div  *ngIf="user.avatar">
-                <img (error)="handleMissingImage($event)" mat-card-avatar [src]="user.avatar" alt="" >
+                <img  mat-card-avatar [src]="getAvatar(user.avatar)" alt="" >
             </div>
         </div>
     </div>

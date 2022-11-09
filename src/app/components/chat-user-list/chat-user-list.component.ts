@@ -42,7 +42,7 @@ export class ChatUserListComponent implements OnInit {
     private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute) { }
     public handleMissingImage(event: Event) {
-      (event.target as HTMLImageElement).style.display = 'none';
+      (event.target as HTMLImageElement).style.backgroundImage = "url('https://cdn-icons-png.flaticon.com/512/149/149071.png') !important";
     }
   ngOnInit(): void {
     //le profile provient du parametre déclaré dans le resolve de l'app routing module
@@ -101,7 +101,15 @@ this.Profile = profile
 
     })
     this.socketService.logUsers()
+    this.searchAmi.valueChanges.subscribe((resultSearchAmi: any) => {
 
+      this.Amis = this.Amis.filter((user: any) => {
+        return user.firstName.toLowerCase().includes(resultSearchAmi.toLowerCase()) ||
+          user.lastName.toLowerCase().includes(resultSearchAmi.toLowerCase())
+        // user.location.city.toLowerCase().includes(resultSearch.toLowerCase())
+      }
+      )
+    })
     this.searchBar.valueChanges.subscribe((resultSearch: any) => {
 
       this.NewArray = this.Users.filter((user: any) => {
@@ -111,15 +119,7 @@ this.Profile = profile
       }
       )
     })
-    this.searchAmi.valueChanges.subscribe((resultSearchAmi: any) => {
-
-      this.Amis = this.Users.filter((user: any) => {
-        return user.firstName.toLowerCase().includes(resultSearchAmi.toLowerCase()) ||
-          user.lastName.toLowerCase().includes(resultSearchAmi.toLowerCase())
-        // user.location.city.toLowerCase().includes(resultSearch.toLowerCase())
-      }
-      )
-    })
+   
 
     this.socketService.getMsgOnlineSubject().subscribe((message: any) => {
 
@@ -221,4 +221,10 @@ this.Profile = profile
   //     })
   //   )
   // }
+
+  getAvatar(url: any){
+    const img = new Image()
+    img.src = url
+    return img.complete ? url : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
+  }
 }
