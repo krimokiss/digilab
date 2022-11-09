@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { User } from './../../models/user';
 import { TestService } from './../../services/test.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,6 +10,7 @@ import { ChatModalComponent } from './../../modals/chat-modal/chat-modal.compone
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { concatMap, exhaustMap, from } from 'rxjs';
+import { forkJoin} from 'rxjs'
 
 @Component({
   selector: 'app-chat-user-list',
@@ -27,6 +29,7 @@ export class ChatUserListComponent implements OnInit {
   Amis!: any[]
   FriendSelected!: any
   userConnected!: any
+  
   obs1$ = this.userService.getProfil()
   obs2$ = this.userService.getUsersList()
   obs3$ = this.socketService.getFriend()
@@ -36,12 +39,16 @@ export class ChatUserListComponent implements OnInit {
     private testService: TestService,
     private userService: UserService,
     private socketService: SocketService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute) { }
     public handleMissingImage(event: Event) {
       (event.target as HTMLImageElement).style.display = 'none';
     }
   ngOnInit(): void {
-
+    //le profile provient du parametre déclaré dans le resolve de l'app routing module
+this.activatedRoute.data.subscribe(({profile})=>{
+this.Profile = profile
+})
 // from([
 //   this.obs4$, 
 //   this.obs2$, 
@@ -51,6 +58,7 @@ export class ChatUserListComponent implements OnInit {
 //   console.log(value);
   
 // })
+
 
     this.userService.getProfil().subscribe((profilUser: any) => {
       this.Profile = profilUser
@@ -113,10 +121,7 @@ export class ChatUserListComponent implements OnInit {
       )
     })
 
-  
-
     this.socketService.getMsgOnlineSubject().subscribe((message: any) => {
-
 
       this.Amis.forEach((user: any) => {
         if (user.username !== this.FriendSelected.username) {
@@ -204,4 +209,16 @@ export class ChatUserListComponent implements OnInit {
       this.FriendSelected = responseFromModal 
     })
   }
+  // getProfileAndOnlineUsers():Observable<any> {
+  //   return forkJoin([
+  //     this.userService.getProfil(),
+  //     this.socketService.getOnlineUsers()
+  //   ]).pipe(
+  //     map((data:any[])=> {
+  //       let profil: any = data[0];
+  //       let online: any[ = data[1]];
+  //       return profil.online = profilOnline
+  //     })
+  //   )
+  // }
 }

@@ -1,3 +1,4 @@
+import { UserResolverResolver } from './resolvers/user-resolver.resolver';
 import { AuthGuard } from './helpers/auth.guard';
 import { FinderComponent } from './components/finder/finder.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
     children:[
     {path: 'directory', component: DirectoryComponent, canActivate:[AuthGuard]},
      {path: 'weather', component: WeatherComponent, canActivate:[AuthGuard]},
-      {path: 'chat', component: ChatComponent, canActivate:[AuthGuard]}, 
+      {path: 'chat', component: ChatComponent, canActivate:[AuthGuard], resolve:{profile:UserResolverResolver}}, 
       {path: 'profil', component: ProfilComponent, canActivate:[AuthGuard]}
     ]
   }
