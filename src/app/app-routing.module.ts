@@ -7,15 +7,15 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { DirectoryComponent } from './components/directory/directory.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './modules/login/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   
   
-  {path: '', component: LoginComponent},
-  {path: 'login', component: LoginComponent},
+  // {path: '', component: LoginComponent},
+  {path: 'login', loadChildren: ()=>import('./modules/login/login.module').then(m=>m.LoginModule)},
   {path: 'register', component: RegisterComponent},
   {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
   {

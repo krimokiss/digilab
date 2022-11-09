@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from './../../services/user.service';
-import { User } from './../../models/user';
-import { TestService } from './../../services/test.service';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user';
+import { TestService } from '../../../services/test.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';

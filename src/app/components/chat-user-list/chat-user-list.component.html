@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div *ngIf="user.avatar">
-                <img mat-card-avatar [src]="user.avatar" alt="" >
+                <img mat-card-avatar [src]="getAvatar(user.avatar)" alt="" >
             </div>
         </div>
     </div>
