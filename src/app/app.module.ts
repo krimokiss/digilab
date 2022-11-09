@@ -16,7 +16,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterComponent } from './components/register/register.component';
+// import { RegisterComponent } from './components/register/register.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { CardComponent } from './components/card/card.component';
@@ -48,7 +48,7 @@ const config: SocketIoConfig = {url:`${environment.API_URL}`, options:{}};
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
+    // RegisterComponent,
     OverviewComponent,
     ChatComponent,
     CardComponent,

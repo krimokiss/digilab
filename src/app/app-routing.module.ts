@@ -6,7 +6,6 @@ import { ChatComponent } from './components/chat/chat.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { DirectoryComponent } from './components/directory/directory.component';
 import { OverviewComponent } from './components/overview/overview.component';
-import { RegisterComponent } from './components/register/register.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -15,7 +14,8 @@ const routes: Routes = [
   
   // {path: '', component: LoginComponent},
   {path: 'login', loadChildren: ()=>import('./modules/login/login.module').then(m=>m.LoginModule)},
-  {path: 'register', component: RegisterComponent},
+  // {path: 'register', component: RegisterComponent},
+  {path: 'register', loadChildren: ()=>import('./modules/register/register.module').then(m=>m.RegisterModule)},
   {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
   {
     path: 'overview', 

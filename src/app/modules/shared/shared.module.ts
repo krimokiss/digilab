@@ -14,14 +14,14 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
-    
+
   ],
   exports: [
     CommonModule,
     MatInputModule,
-  MatIconModule,
+    MatIconModule,
     ReactiveFormsModule,
-    
+
   ]
 
 })
