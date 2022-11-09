@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule} from '@angular/material/input';
 import { MatListModule} from '@angular/material/list';
-import { MatAutocompleteModule} from '@angular/material/autocomplete';
+// import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatButtonModule} from '@angular/material/button';
 import { SocketIoConfig, SocketIoModule} from'ngx-socket-io';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -34,10 +34,10 @@ import { ChatModalComponent } from './modals/chat-modal/chat-modal.component';
 import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 import { ChatTopBarComponent } from './components/chat-top-bar/chat-top-bar.component';
 import {MatChipsModule} from '@angular/material/chips';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import { FinderComponent } from './components/finder/finder.component';
+// import {MatSidenavModule} from '@angular/material/sidenav';
+// import { FinderComponent } from './components/finder/finder.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatToolbarModule} from '@angular/material/toolbar';
+// import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
@@ -64,14 +64,14 @@ const config: SocketIoConfig = {url:`${environment.API_URL}`, options:{}};
     ChatModalComponent,
     ChatRoomComponent,
     ChatTopBarComponent,
-    FinderComponent,
+    // FinderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatAutocompleteModule,
+    // MatAutocompleteModule,
     MatInputModule,
     MatListModule,
     // MatIconModule,
@@ -80,9 +80,9 @@ const config: SocketIoConfig = {url:`${environment.API_URL}`, options:{}};
     HttpClientModule,
     FormsModule,
     MatChipsModule,
-    MatSidenavModule,
+    // MatSidenavModule,
     MatSnackBarModule,
-    MatToolbarModule,
+    // MatToolbarModule,
     MatCardModule,
     MatTabsModule,
     MatRadioModule,

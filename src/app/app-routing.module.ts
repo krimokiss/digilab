@@ -16,9 +16,10 @@ const routes: Routes = [
   {path: 'login', loadChildren: ()=>import('./modules/login/login.module').then(m=>m.LoginModule)},
   // {path: 'register', component: RegisterComponent},
   {path: 'register', loadChildren: ()=>import('./modules/register/register.module').then(m=>m.RegisterModule)},
-  {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
-  {
-    path: 'overview', 
+  // {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
+  {path: 'finder', canActivate:[AuthGuard], loadChildren: ()=>import('./modules/finder/finder.module').then(m=>m.FinderModule)},
+  
+  {path: 'overview', 
     component: OverviewComponent, canActivate:[AuthGuard],
     children:[
     {path: 'directory', component: DirectoryComponent, canActivate:[AuthGuard]},
