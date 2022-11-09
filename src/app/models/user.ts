@@ -23,6 +23,7 @@ export class User {
     skills?: string[]
     role?: string
     friendsID?: User[]
+    nbMsg?: number
 
 constructor(){
     this.avatar = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'

@@ -2,7 +2,7 @@
     <app-chat-top-bar [donnees]="utilisateur"></app-chat-top-bar>
 
     <div class="parent "#scrollMe>
-        <div  *ngFor="let msg of dateFiltered">
+        <div  *ngFor="let msg of allMessage">
             <div  *ngIf="msg.userID.username== utilisateur.username || msg.friendID.username == utilisateur.username " >
                 <mat-chip-list aria-label="Fish selection"> </mat-chip-list>
                     <div class="line" [ngClass]="msg.userID.username== utilisateur.username? 'left' : 'right'">

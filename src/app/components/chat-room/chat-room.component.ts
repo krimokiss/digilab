@@ -47,7 +47,7 @@ export class ChatRoomComponent implements OnInit {
   msgReceived!: any
   mergeArray!: any
   dateMessage!: any
-  dateFiltered!: any
+  allMessage!: any
 
   messageDirect = {
     content: '',
@@ -82,9 +82,11 @@ export class ChatRoomComponent implements OnInit {
 
       this.socketService.getNewRouteMessage(this.utilisateur.username).subscribe((value: any) => {
 
-        this.dateFiltered = value
-        // console.log(this.dateFiltered);
-
+        this.allMessage = value
+        console.log(this.allMessage);
+        // if (this.utilisateur.nbMsg) {
+        //   this.utilisateur.nbMsg = null
+        // }
       })
     })
 
@@ -94,7 +96,7 @@ export class ChatRoomComponent implements OnInit {
     this.socketService.getMsgSubject().subscribe((message: any) => {
       console.log(message);
       this.messageDirect = message
-      this.dateFiltered.push(this.messageDirect)
+      this.allMessage.push(this.messageDirect)
     
     })
 
@@ -102,40 +104,32 @@ export class ChatRoomComponent implements OnInit {
 
     this.socketService.getMsgOnlineSubject().subscribe((message: any) => {
 
-      this.dateFiltered.push(message)
-      // console.log(message);
+      this.allMessage.push(message)
+      console.log(message);
 
       if (this.utilisateur.username !== message.userID.username) {
         this.snackBar.open('Message de : ' + message.userID.username + ' .' + ' .'+ ' .'+ ' Contenu : ' +' '+ message.content, 'ok',
         { duration : 6000, verticalPosition: 'top', panelClass: ['snack-bar-color'] })
-        this.playAudio()
-        console.log(this.utilisateur);
-        console.log(message);
-        
-        
+        this.playAudio()        
       }
-    
-      // console.log(message);
-      // console.log(this.utilisateur);
-
     })
+
     this.socketService.getMessages()
 
   }
+
   playAudio(){
     let audio = new Audio();
-    audio.src = "assets/msgSound.wav";
+    audio.src = "assets/msgSound.mp3";
     audio.load();
     audio.play();
   }
  
-
   ngAfterViewChecked() {
     this.scrollToBottom()
   }
 
   onSend(): void {
-   
     const valueForm = this.newBlagues.value
     this.socketService.sendMessage(this.utilisateur, valueForm)
     this.newBlagues.reset()

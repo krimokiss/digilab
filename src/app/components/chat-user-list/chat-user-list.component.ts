@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { ChatModalComponent } from './../../modals/chat-modal/chat-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { concatMap, exhaustMap, from } from 'rxjs';
 
 @Component({
   selector: 'app-chat-user-list',
@@ -25,38 +26,43 @@ export class ChatUserListComponent implements OnInit {
   isChecked = true
   Amis!: any[]
   FriendSelected!: any
-  badgeCount!: number
   userConnected!: any
-  msgBadge = {
-    avatar: '',
-    sirstName: '',
-    lastName: '',
-    nbMsg: '',
-    online: '',
-    username: '',
-    _id: ''
-  }
-
-
+  obs1$ = this.userService.getProfil()
+  obs2$ = this.userService.getUsersList()
+  obs3$ = this.socketService.getFriend()
+  obs4$ = this.socketService.getOnlineUsers()
 
   constructor(private dialog: MatDialog,
     private testService: TestService,
     private userService: UserService,
     private socketService: SocketService,
     private snackBar: MatSnackBar) { }
-
+    public handleMissingImage(event: Event) {
+      (event.target as HTMLImageElement).style.display = 'none';
+    }
   ngOnInit(): void {
+
+// from([
+//   this.obs4$, 
+//   this.obs2$, 
+//   this.obs3$, 
+//   this.obs1$])
+//   .pipe(exhaustMap(val=>val)).subscribe((value:any)=>{
+//   console.log(value);
+  
+// })
+
+    this.userService.getProfil().subscribe((profilUser: any) => {
+      this.Profile = profilUser
+      // console.log(profilUser.firstName, profilUser.lastName, profilUser.avatar);
+    })
     this.userService.getUsersList().subscribe((usersId: any) => {
       this.Users = usersId.body
       this.NewArray = [...this.Users]
-      // console.log(this.NewArray);
       this.NewArray = this.NewArray.filter(value => value.username != this.Profile.username)
-      // console.log(this.NewArray);
-      // console.log(this.Users);
+      
       this.socketService.getOnlineUsers().subscribe((users: any) => {
         this.userConnected = users
-
-        // console.log(this.userConnected);
         this.NewArray.forEach((ami: any) => {
           if ((this.userConnected).includes(ami.username)) {
             ami.online = true
@@ -103,49 +109,42 @@ export class ChatUserListComponent implements OnInit {
         return user.firstName.toLowerCase().includes(resultSearchAmi.toLowerCase()) ||
           user.lastName.toLowerCase().includes(resultSearchAmi.toLowerCase())
         // user.location.city.toLowerCase().includes(resultSearch.toLowerCase())
-        
       }
       )
     })
 
-    this.userService.getProfil().subscribe((profilUser: any) => {
-      this.Profile = profilUser
-      // console.log(profilUser.firstName, profilUser.lastName, profilUser.avatar);
-    })
+  
 
     this.socketService.getMsgOnlineSubject().subscribe((message: any) => {
 
+
       this.Amis.forEach((user: any) => {
-        if (this.msgBadge.username !== this.FriendSelected.username) {
+        if (user.username !== this.FriendSelected.username) {
           if (user.username == message.userID.username) {
             if (user.nbMsg) {
               user.nbMsg = user.nbMsg + 1
             } else {
               user.nbMsg = 1
             }
-            this.msgBadge = user
-            console.log(this.msgBadge);
-          }
+            }
         }
       })
-      // this.NewArray.forEach((user:any)=>{
-      //   if (user.username==message.userID.username) {
-      //     if (user.nbMsg) {
-      //       user.nbMsg = user.nbMsg+1
-
-      //     } else{
-      //       user.nbMsg = 1
-      //     }
-      //    this.msgBadge = user
-      //     console.log(this.msgBadge);
-
-      //   }
-      // })
+      this.NewArray.forEach((user:any)=>{
+        if (user.username !== this.FriendSelected.username) {
+        if (user.username==message.userID.username) {
+          if (user.nbMsg) {
+            user.nbMsg = user.nbMsg+1
+          } else{
+            user.nbMsg = 1
+          }
+        }
+      }
+      })
     })
+
+    
     this.socketService.getFriend().subscribe(response => {
       this.Amis = response
-
-
     })
 
   }
@@ -188,19 +187,21 @@ export class ChatUserListComponent implements OnInit {
 
   openDialog(user: any): void {
     this.dialog.open(ChatModalComponent, { data: user }).afterClosed().subscribe((responseFromModal: any) => {
-      console.log(responseFromModal);
-      this.FriendSelected = responseFromModal
-      if (this.msgBadge.username == this.FriendSelected.username) {
-        this.clearCount()
+      if (responseFromModal.nbMsg) {
+       responseFromModal.nbMsg = null
+     this.NewArray.forEach((user:any)=>{
+      if (responseFromModal.username == user.username) {
+        user.nbMsg = null
       }
+     })
+     this.Amis.forEach((user:any)=>{
+      if (responseFromModal.username == user.username) {
+        user.nbMsg = null
+      }
+     })
+       
+      }
+      this.FriendSelected = responseFromModal 
     })
-
   }
-
-
-  clearCount() {
-    this.msgBadge.nbMsg = '';
-  }
-
-
 }

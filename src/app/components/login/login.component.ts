@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.passwordregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
     this.loginForm = this.formbuilder.group({
       email: [this.user.email, [Validators.required, Validators.pattern(this.emailRegex)]],
-      password: [this.user.password, [Validators.required, Validators.pattern(this.passwordregex)]],
+      password: [this.user.password, [Validators.required]],
 
     });
 

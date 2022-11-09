@@ -56,8 +56,8 @@
                     <mat-icon classs="iconMessage" (click)="openDialog(user)">forum</mat-icon>
                 </div>
             </div>
-            <div *ngIf="user.avatar">
-                <img  mat-card-avatar [src]="user.avatar" alt="" >
+            <div  *ngIf="user.avatar">
+                <img (error)="handleMissingImage($event)" mat-card-avatar [src]="user.avatar" alt="" >
             </div>
         </div>
     </div>
